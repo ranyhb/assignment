@@ -94,9 +94,14 @@ user:user1
 pass: JD4rI9DKm2
 --------------------------------
 
+
 curl.exe -X POST http://localhost:5000/buy -H "Content-Type: application/json" -d '{"\username": "\user1", "\userid": 123, "price": 29.99}'
 
 kubectl port-forward mymongo-mongodb-75dc8b6c87-4zlqs 27017:27017
 
 
-curl.exe -X POST http://localhost:5000/buy -H "Content-Type: application/json" -d {"\username": "user1", "\userid": 123, "\price": 29.99}
+curl.exe -X POST http://localhost:5000/buy -H "Content-Type: application/json" -d '{\"username\": \"user1\", \"userid\": 123, \"price\": 29.99}'
+
+curl.exe -X GET http://localhost:5000/getAllUserBuys?username=user1&userid=123
+
+kubectl exec -it my-pod -- bash
