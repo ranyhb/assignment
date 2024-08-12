@@ -20,9 +20,14 @@ function App() {
   const handleButtonClick1 = async () => {
     console.log('Form 1 data:', form1);
     setResult(JSON.stringify(form1));
-
+    const jsonString = JSON.stringify(form1);
+    const parsedObject = JSON.parse(jsonString);
+    const username = parsedObject.username;
+    const userid = parsedObject.userid;
+    const price = parsedObject.price;
+    const data = {username: username, userid: userid, price: price}
     try {
-      const response = await axios.post('http://localhost:5000/getAllUserBuys', form1);
+      const response = await axios.post('http://customer-backend-service:6555/buy', data );
       console.log('Response from backend:', response.data);
       setResult(JSON.stringify(form1));
     } catch (error) {
@@ -40,7 +45,7 @@ function App() {
       const parsedObject = JSON.parse(jsonString);
       const username = parsedObject.username;
       const userid = parsedObject.userid;
-      const response = await axios.get(`http://localhost:6555/getAllUserBuys?username=${username}&userid=${userid}`);
+      const response = await axios.get(`http://customer-backend-service:6555/getAllUserBuys?username=${username}&userid=${userid}`);
       console.log('Response from backend:', response.data.data);
       setResult(JSON.stringify(response.data.data));
     } catch (error) {
