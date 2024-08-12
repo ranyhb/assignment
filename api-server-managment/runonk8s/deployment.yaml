@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-managment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-managment
+  template:
+    metadata:
+      labels:
+        app: api-managment
+    spec:
+      containers:
+      - name: api-managment
+        image: api-managment:latest  # Replace with your Docker image name
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6000
